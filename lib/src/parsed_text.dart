@@ -203,6 +203,7 @@ class ParsedText extends StatelessWidget {
         textAlign: alignment,
         textDirection: textDirection,
         onTap: onTap as void Function()?,
+        scrollPhysics: NeverScrollableScrollPhysics(),
       );
     }
 
