@@ -42,6 +42,8 @@ class ParsedText extends StatelessWidget {
   /// the specified font size.
   final double textScaleFactor;
 
+  final int? minLines;
+
   /// An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according
   /// to [overflow].
@@ -86,6 +88,7 @@ class ParsedText extends StatelessWidget {
     this.textScaleFactor = 1.0,
     this.strutStyle,
     this.textWidthBasis = TextWidthBasis.parent,
+    this.minLines = 1,
     this.maxLines,
     this.onTap,
     this.selectable = false,
@@ -197,6 +200,7 @@ class ParsedText extends StatelessWidget {
     if (selectable) {
       return SelectableText.rich(
         TextSpan(children: <InlineSpan>[...widgets], style: style),
+        minLines: minLines,
         maxLines: maxLines,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis,
@@ -210,11 +214,11 @@ class ParsedText extends StatelessWidget {
     return RichText(
       softWrap: softWrap,
       overflow: overflow,
-      textScaleFactor: textScaleFactor,
       maxLines: maxLines,
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis,
       textAlign: alignment,
+      textScaler: TextScaler.linear(textScaleFactor),
       textDirection: textDirection,
       text: TextSpan(
         text: '',
